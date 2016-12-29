@@ -1,0 +1,18 @@
+<style type="text/css">
+  li {
+    list-style-type: none;
+  }
+</style>
+<div ng-controller = "oneUserController">
+	<div class = "container">
+		<h1>User:{{user.firstName}} {{user.lastName}}</h1>
+    <h3>Posted..</h3>
+    <ul>
+      <li>{{user.topicCount}} topic(s)</li>
+      <li>{{user.postCount}} post(s)</li>
+      <li>{{user.commentCount}} comment(s)</li>
+    </ul>
+		<a href="#/">Log Out</a> 
+    <a href="#!/success">Dashboard</a>
+</div>
+</div>

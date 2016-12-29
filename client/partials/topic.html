@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title></title>
+</head>
+<style type="text/css">
+	li {
+		list-style-type: none;
+	}
+	.name {color: blue;}
+</style>
+<body>
+	<div ng-controller = "topicController">
+	<div class = "container">
+		<h1>Hello</h1>
+		<a href="#/">Log Out</a> 
+   		<a href="#!/success">Dashboard</a>
+		<h4>{{topic._user.email}}</h4>
+		<h4>{{topic.topic}}</h4>
+		<h4>{{topic.description}}</h4>
+		<form name = "postForm" ng-submit = "Post();">
+          Post: </br> <textarea ng-model = "post.post"></textarea><br>
+          <input type='submit' value='Add my Post!' class = "btn btn-primary">
+	    </form>
+      <ul ng-repeat="post in topic.posts track by $index">
+          <li class = "name"><a href="#!/user/{{post._user._id}}">{{post._user.firstName}} {{post._user.lastName}}</a> {{post.created_at | date:'short'}} <button ng-click = "like(post._id)" class = "btn btn-success">Like {{post.numberLikes}}</button> <button ng-click = "dislike(post._id)" class = "btn btn-danger">Dislike {{post.numberDislikes}}</button></li>
+          <li>{{ post.post }}</li>
+          <ul ng-repeat="comment in post.comments">
+          	<li class = "name"><a href="#!/user/{{comment._user}}">{{comment.name}}</a> {{comment.created_at | date:'short'}}</li>
+          	<li>{{comment.text}}</li>
+          </ul>
+          <form name = "postComment" ng-submit = "Comment(post._id, $index)">
+	          Comment: <input type = "text" ng-model="newcomment[$index].text">
+	          <input type='submit' value='Add my Comment!' class = "btn btn-primary">
+	      </form>
+       </ul>
+      </div>
+     </div>
+</body>
+</html>
